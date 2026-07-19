@@ -1,0 +1,24 @@
+name: Extract app zip
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract app.zip to project root
+        run: |
+          unzip -o app.zip -d .
+          rm -f app.zip
+
+      - name: Show project structure
+        run: |
+          ls -R
