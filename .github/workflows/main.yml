@@ -1,0 +1,23 @@
+name: Extract app zip
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract app.zip
+        run: |
+          unzip -o app.zip -d extracted
+
+      - name: Show files
+        run: |
+          ls -R extracted
